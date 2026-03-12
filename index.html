@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Dog Therapist | Certified Dog Behaviorist</title>
+  <meta name="description" content="Professional dog behavior consulting and training. We help dogs and their families live happier, more balanced lives." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* =========================================
+       RESET & BASE
+    ========================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: #2C3E50;
+      overflow-x: hidden;
+      background: #EAF6FF;
+    }
+
+    /* =========================================
+       COLOR TOKENS
+    ========================================= */
+    :root {
+      --sky-dark:    #2E86AB;
+      --sky-mid:     #5BA4CF;
+      --sky-light:   #A8D8EA;
+      --sky-pale:    #D6EFFF;
+      --grass-dark:  #4A9B5E;
+      --grass-mid:   #6DC07B;
+      --grass-light: #A8E6AF;
+      --cloud:       #FFFFFF;
+      --cream:       #FDFAF5;
+      --warm-orange: #F4845F;
+      --warm-yellow: #FFD166;
+      --text-dark:   #1A2D3A;
+      --text-mid:    #3D5A6B;
+      --text-light:  #6B8FA3;
+      --white:       #FFFFFF;
+      --shadow:      0 8px 32px rgba(46,134,171,0.15);
+      --shadow-lg:   0 16px 48px rgba(46,134,171,0.20);
+      --radius:      20px;
+      --radius-sm:   12px;
+    }
+
+    /* =========================================
+       UTILITY
+    ========================================= */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(8px);
+      color: var(--sky-dark);
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+      border: 1.5px solid rgba(46,134,171,0.2);
+    }
+    .section-tag.light { color: var(--white); border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.15); }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      border: 2px solid transparent;
+    }
+    .btn-primary {
+      background: var(--sky-dark);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(46,134,171,0.35);
+    }
+    .btn-primary:hover {
+      background: #1d6e91;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(46,134,171,0.45);
+    }
+    .btn-secondary {
+      background: #fff;
+      color: var(--sky-dark);
+      border-color: var(--sky-dark);
+    }
+    .btn-secondary:hover {
+      background: var(--sky-pale);
+      transform: translateY(-2px);
+    }
+    .btn-warm {
+      background: var(--warm-orange);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(244,132,95,0.35);
+    }
+    .btn-warm:hover { background: #e0694a; transform: translateY(-2px); }
+
+    /* =========================================
+       PAWS SVG INLINE
+    ========================================= */
+    .paw { display: inline-block; }
+
+    /* =========================================
+       NAVIGATION
+    ========================================= */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.3s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 2px 20px rgba(46,134,171,0.12);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 44px; height: 44px;
+      background: var(--sky-dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.1;
+    }
+    .nav-logo-sub {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--sky-dark);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--sky-dark); }
+    .nav-cta { margin-left: 8px; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2.5px;
+      background: var(--text-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1.6rem;
+      font-family: 'Playfair Display', serif;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .mobile-close {
+      position: absolute; top: 24px; right: 24px;
+      background: none; border: none;
+      font-size: 2rem; cursor: pointer; color: var(--text-dark);
+    }
+
+    /* =========================================
+       HERO
+    ========================================= */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(180deg,
+        #1a6fa8 0%,
+        #2E86AB 25%,
+        #5BA4CF 55%,
+        #A8D8EA 72%,
+        #C8EFC8 85%,
+        #7BC67E 100%
+      );
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Sun */
+    .hero-sun {
+      position: absolute;
+      top: 60px; right: 10%;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle, #FFE066 0%, #FFD700 60%, rgba(255,215,0,0) 100%);
+      border-radius: 50%;
+      animation: sunGlow 4s ease-in-out infinite alternate;
+      box-shadow: 0 0 60px 20px rgba(255,220,60,0.25);
+    }
+    @keyframes sunGlow {
+      from { box-shadow: 0 0 60px 20px rgba(255,220,60,0.2); }
+      to   { box-shadow: 0 0 80px 35px rgba(255,220,60,0.35); }
+    }
+
+    /* Clouds */
+    .cloud {
+      position: absolute;
+      background: #fff;
+      border-radius: 50px;
+      opacity: 0.92;
+    }
+    .cloud::before, .cloud::after {
+      content: '';
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .cloud-1 {
+      width: 180px; height: 55px;
+      top: 12%; left: 5%;
+      animation: floatCloud 28s linear infinite;
+    }
+    .cloud-1::before { width: 80px; height: 80px; top: -40px; left: 20px; }
+    .cloud-1::after  { width: 55px; height: 55px; top: -28px; left: 80px; }
+
+    .cloud-2 {
+      width: 240px; height: 65px;
+      top: 22%; left: 38%;
+      animation: floatCloud 36s linear infinite 6s;
+    }
+    .cloud-2::before { width: 100px; height: 100px; top: -50px; left: 30px; }
+    .cloud-2::after  { width: 75px; height: 75px; top: -38px; left: 110px; }
+
+    .cloud-3 {
+      width: 160px; height: 48px;
+      top: 8%; right: 25%;
+      animation: floatCloud 22s linear infinite 2s;
+    }
+    .cloud-3::before { width: 70px; height: 70px; top: -35px; left: 18px; }
+    .cloud-3::after  { width: 50px; height: 50px; top: -25px; left: 70px; }
+
+    .cloud-4 {
+      width: 200px; height: 58px;
+      top: 35%; left: -5%;
+      animation: floatCloud 32s linear infinite 10s;
+    }
+    .cloud-4::before { width: 90px; height: 90px; top: -45px; left: 25px; }
+    .cloud-4::after  { width: 65px; height: 65px; top: -33px; left: 95px; }
+
+    @keyframes floatCloud {
+      from { transform: translateX(-20px); }
+      50%  { transform: translateX(20px); }
+      to   { transform: translateX(-20px); }
+    }
+
+    /* Birds */
+    .birds {
+      position: absolute;
+      top: 18%; left: 20%;
+      opacity: 0.5;
+      animation: birdFly 8s ease-in-out infinite;
+    }
+    @keyframes birdFly {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+
+    /* Grass */
+    .hero-grass {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+    }
+    .hero-grass svg { width: 100%; height: 100%; }
+
+    /* Paw prints decorative */
+    .paw-trail {
+      position: absolute;
+      bottom: 180px;
+      opacity: 0.18;
+      display: flex; gap: 40px;
+      transform: rotate(-8deg);
+    }
+    .paw-trail-left { left: 5%; }
+    .paw-trail-right { right: 5%; transform: rotate(8deg); }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding-top: 100px;
+      padding-bottom: 220px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(255,255,255,0.45);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+    .hero-title {
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.15);
+      line-height: 1.1;
+    }
+    .hero-title span { color: var(--warm-yellow); }
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: rgba(255,255,255,0.9);
+      max-width: 560px;
+      margin-bottom: 40px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      color: #fff;
+    }
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--warm-yellow);
+    }
+    .hero-stat-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    /* =========================================
+       TRUST BAR
+    ========================================= */
+    #trust {
+      background: var(--white);
+      padding: 32px 0;
+      box-shadow: 0 4px 24px rgba(46,134,171,0.08);
+      position: relative;
+      z-index: 5;
+    }
+    .trust-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 12px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text-mid);
+    }
+    .trust-icon {
+      width: 40px; height: 40px;
+      background: var(--sky-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+
+    /* =========================================
+       ABOUT
+    ========================================= */
+    #about {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #fff 0%, #EAF6FF 100%);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--sky-light) 0%, var(--sky-mid) 100%);
+      border-radius: 32px 32px 120px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-img-placeholder::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(0deg, var(--grass-mid) 0%, transparent 100%);
+      border-radius: 0 0 120px 0;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--sky-dark);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .about-badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .about-badge-txt { font-size: 0.78rem; font-weight: 700; opacity: 0.85; margin-top: 4px; }
+    .about-text h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px; color: var(--text-dark); }
+    .about-text p { color: var(--text-mid); line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+    .about-creds {
+      display: flex; flex-wrap: wrap; gap: 12px; margin: 32px 0;
+    }
+    .cred-chip {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--sky-pale);
+      border: 1.5px solid rgba(46,134,171,0.2);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--sky-dark);
+    }
+
+    /* =========================================
+       SERVICES
+    ========================================= */
+    #services {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #EAF6FF 0%, #C8EFC8 30%, #EAF6FF 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #services::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(180deg, #EAF6FF 0%, transparent 100%);
+      z-index: 2;
+    }
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-header h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; color: var(--text-dark); }
+    .services-header p { color: var(--text-mid); max-width: 560px; margin: 0 auto; font-size: 1.05rem; line-height: 1.7; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1.5px solid rgba(46,134,171,0.08);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--sky-mid);
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--sky-dark), var(--sky-light));
+    }
+    .service-icon {
+      width: 64px; height: 64px;
+      background: var(--sky-pale);
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+    .service-card h3 { font-size: 1.35rem; margin-bottom: 12px; color: var(--text-dark); }
+    .service-card p { color: var(--text-mid); line-height: 1.7; font-size: 0.95rem; margin-bottom: 20px; }
+    .service-card .price {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--sky-dark);
+      margin-bottom: 4px;
+    }
+    .service-card .price-note { font-size: 0.8rem; color: var(--text-light); }
+    .service-badge {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: var(--warm-orange);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================================
+       PROCESS
+    ========================================= */
+    #process {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .process-header { text-align: center; margin-bottom: 64px; }
+    .process-header h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(12.5% + 18px);
+      right: calc(12.5% + 18px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--sky-light), var(--sky-mid), var(--sky-light));
+    }
+    .process-step { text-align: center; }
+    .step-num {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--sky-dark);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 20px rgba(46,134,171,0.3);
+    }
+    .process-step h4 { font-size: 1.1rem; margin-bottom: 10px; }
+    .process-step p { color: var(--text-mid); font-size: 0.9rem; line-height: 1.6; }
+
+    /* =========================================
+       BOOKING
+    ========================================= */
+    #booking {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--sky-dark) 0%, var(--sky-mid) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #booking::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -100px;
+      width: 400px; height: 400px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    #booking::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .booking-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .booking-text h2 { color: #fff; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px; }
+    .booking-text p { color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 28px; font-size: 1.05rem; }
+    .booking-features { list-style: none; margin-bottom: 40px; }
+    .booking-features li {
+      display: flex; align-items: flex-start; gap: 12px;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .booking-features li::before {
+      content: '✓';
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      background: var(--warm-yellow);
+      color: var(--text-dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 900;
+      margin-top: 2px;
+    }
+    .booking-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .booking-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+    .booking-card p { color: var(--text-mid); margin-bottom: 32px; font-size: 0.95rem; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 13px 18px;
+      border: 2px solid #E5EDF2;
+      border-radius: var(--radius-sm);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      transition: border-color 0.2s;
+      background: #F9FCFF;
+      outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--sky-mid);
+      background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* =========================================
+       INTAKE FORM
+    ========================================= */
+    #intake {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #EAF6FF 0%, #fff 100%);
+    }
+    .intake-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .intake-text h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px; }
+    .intake-text p { color: var(--text-mid); line-height: 1.8; margin-bottom: 24px; font-size: 1.05rem; }
+    .intake-fields {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 36px;
+    }
+    .intake-field {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--sky-pale);
+      border: 1.5px solid rgba(46,134,171,0.15);
+      border-radius: var(--radius-sm);
+      padding: 14px 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-mid);
+    }
+    .intake-field-icon { font-size: 20px; }
+    .intake-cta-card {
+      background: linear-gradient(135deg, var(--sky-dark), var(--sky-mid));
+      border-radius: var(--radius);
+      padding: 48px;
+      color: #fff;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .intake-cta-card::before {
+      content: '🐾';
+      position: absolute;
+      right: -20px; top: -20px;
+      font-size: 120px;
+      opacity: 0.08;
+    }
+    .intake-cta-card h3 { font-size: 1.8rem; margin-bottom: 12px; }
+    .intake-cta-card p { opacity: 0.9; line-height: 1.7; margin-bottom: 28px; }
+
+    /* =========================================
+       TESTIMONIALS
+    ========================================= */
+    #testimonials {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #fff 0%, var(--sky-pale) 100%);
+    }
+    .test-header { text-align: center; margin-bottom: 64px; }
+    .test-header h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
+    .test-header p { color: var(--text-mid); max-width: 560px; margin: 0 auto; font-size: 1.05rem; }
+    .test-stars {
+      color: var(--warm-yellow);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .test-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid rgba(46,134,171,0.06);
+      transition: all 0.3s;
+    }
+    .test-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .test-quote {
+      font-size: 3rem;
+      color: var(--sky-light);
+      font-family: Georgia, serif;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .test-card p { color: var(--text-mid); line-height: 1.75; margin-bottom: 28px; font-size: 0.97rem; font-style: italic; }
+    .test-author { display: flex; align-items: center; gap: 14px; }
+    .test-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky-light), var(--sky-mid));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .test-name { font-weight: 800; font-size: 0.95rem; }
+    .test-dog { font-size: 0.82rem; color: var(--text-light); }
+
+    /* =========================================
+       CONTACT
+    ========================================= */
+    #contact {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 72px;
+    }
+    .contact-info h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 20px; }
+    .contact-info p { color: var(--text-mid); line-height: 1.8; margin-bottom: 40px; }
+    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .contact-item-icon {
+      width: 48px; height: 48px;
+      background: var(--sky-pale);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .contact-item-text strong { display: block; font-weight: 800; margin-bottom: 4px; }
+    .contact-item-text span { color: var(--text-mid); font-size: 0.92rem; }
+    .contact-form {
+      background: var(--sky-pale);
+      border-radius: var(--radius);
+      padding: 48px;
+      border: 1.5px solid rgba(46,134,171,0.12);
+    }
+    .contact-form h3 { font-size: 1.6rem; margin-bottom: 8px; }
+    .contact-form > p { color: var(--text-mid); margin-bottom: 32px; }
+
+    /* =========================================
+       POLICIES
+    ========================================= */
+    #policies {
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--sky-pale) 0%, #fff 100%);
+    }
+    .policies-header { text-align: center; margin-bottom: 64px; }
+    .policies-header h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
+    .policies-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .policy-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid rgba(46,134,171,0.08);
+    }
+    .policy-card h3 { font-size: 1.25rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .policy-card p, .policy-card li {
+      color: var(--text-mid);
+      font-size: 0.93rem;
+      line-height: 1.75;
+    }
+    .policy-card ul { padding-left: 20px; }
+    .policy-card ul li { margin-bottom: 6px; }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.75);
+      padding: 72px 0 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .footer-brand p { line-height: 1.7; margin-top: 16px; font-size: 0.92rem; max-width: 280px; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; font-weight: 700; }
+    .footer-col h4 { color: #fff; font-family: 'Nunito', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--sky-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.85rem;
+    }
+    .footer-paws { font-size: 1.2rem; letter-spacing: 6px; }
+
+    /* =========================================
+       FLOATING CTA
+    ========================================= */
+    .floating-cta {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 900;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    .floating-btn {
+      background: var(--sky-dark);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 24px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(46,134,171,0.4);
+      transition: all 0.25s;
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .floating-btn:hover { background: #1d6e91; transform: translateY(-2px); }
+    .floating-btn-small {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      padding: 0;
+      justify-content: center;
+      font-size: 1.4rem;
+      background: var(--warm-orange);
+    }
+
+    /* =========================================
+       SCROLL ANIMATIONS
+    ========================================= */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-steps::before { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .about-grid,
+      .booking-inner,
+      .intake-inner,
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .test-grid { grid-template-columns: 1fr; }
+      .policies-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .hero-stats { gap: 24px; }
+      .hero-btns { flex-direction: column; }
+      .trust-inner { gap: 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .floating-cta { bottom: 20px; right: 16px; }
+      .booking-card { padding: 32px 24px; }
+      .contact-form { padding: 32px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================
+       NAVIGATION
+  ================================================ -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          <div class="nav-logo-icon">🐾</div>
+          <div>
+            <div class="nav-logo-text">The Dog Therapist</div>
+            <div class="nav-logo-sub">Certified Behaviorist</div>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#policies">Policies</a></li>
+        </ul>
+        <a href="#booking" class="btn btn-primary nav-cta">Book a Session</a>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="toggleMenu()">×</button>
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#services" onclick="toggleMenu()">Services</a>
+    <a href="#booking" onclick="toggleMenu()">Book Now</a>
+    <a href="#intake" onclick="toggleMenu()">Intake Form</a>
+    <a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+    <a href="#policies" onclick="toggleMenu()">Policies</a>
+    <a href="#booking" class="btn btn-warm" onclick="toggleMenu()" style="margin-top:16px">Book a Session</a>
+  </div>
+
+  <!-- ================================================
+       HERO
+  ================================================ -->
+  <section id="hero">
+    <!-- Sky elements -->
+    <div class="hero-sun"></div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+
+    <!-- Birds SVG -->
+    <div class="birds">
+      <svg width="80" height="30" viewBox="0 0 80 30" fill="none">
+        <path d="M0 15 Q10 5 20 15" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M25 10 Q35 0 45 10" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M55 18 Q63 10 72 18" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Paw trail decorative -->
+    <div class="paw-trail paw-trail-left">
+      <span style="font-size:28px">🐾</span>
+      <span style="font-size:24px">🐾</span>
+      <span style="font-size:20px">🐾</span>
+    </div>
+    <div class="paw-trail paw-trail-right">
+      <span style="font-size:20px">🐾</span>
+      <span style="font-size:24px">🐾</span>
+      <span style="font-size:28px">🐾</span>
+    </div>
+
+    <!-- Grass SVG -->
+    <div class="hero-grass">
+      <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,160 C120,100 200,180 360,150 C520,120 600,170 720,140 C840,110 920,165 1080,145 C1240,125 1360,155 1440,130 L1440,200 L0,200 Z" fill="#5AAD5E"/>
+        <path d="M0,175 C160,145 280,180 440,165 C600,150 680,175 840,160 C1000,145 1100,170 1280,155 C1360,148 1400,162 1440,155 L1440,200 L0,200 Z" fill="#7BC67E"/>
+        <path d="M0,185 C200,170 320,190 480,180 C640,170 760,188 920,178 C1080,168 1200,182 1380,176 L1440,175 L1440,200 L0,200 Z" fill="#A8E6AF"/>
+        <!-- Grass blades -->
+        <path d="M50,175 Q55,140 60,175" stroke="#4A9B5E" stroke-width="2" fill="none"/>
+        <path d="M55,175 Q62,132 68,175" stroke="#4A9B5E" stroke-width="2" fill="none"/>
+        <path d="M200,165 Q205,128 210,165" stroke="#4A9B5E" stroke-width="2" fill="none"/>
+        <path d="M400,155 Q406,118 412,155" stroke="#4A9B5E" stroke-width="2" fill="none"/>
+        <path d="M700,148 Q706,110 712,148" stroke="#4A9B5E" stroke-width="2" fill="none"/>
+        <path d="M1000,155 Q1005,118 1010,155" stroke="#4A9B5E" stroke-width="2" fill="none"/>
+        <path d="M1300,165 Q1305,128 1310,165" stroke="#4A9B5E" stroke-width="2" fill="none"/>
+        <!-- Flowers -->
+        <circle cx="140" cy="170" r="5" fill="#FFD166" opacity="0.8"/>
+        <circle cx="550" cy="158" r="4" fill="#FF8C42" opacity="0.7"/>
+        <circle cx="880" cy="163" r="5" fill="#FFD166" opacity="0.8"/>
+        <circle cx="1200" cy="170" r="4" fill="#FF8C42" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">🐾 Certified Dog Behaviorist</div>
+        <h1 class="hero-title">
+          Every Dog Deserves to<br/>
+          <span>Feel Safe & Loved</span>
+        </h1>
+        <p class="hero-subtitle">
+          Compassionate, science-based behavior consulting that transforms your dog's life — and yours. We help fearful, reactive, and anxious dogs find their calm.
+        </p>
+        <div class="hero-btns">
+          <a href="#booking" class="btn btn-warm">Book a Free Consultation</a>
+          <a href="#services" class="btn btn-secondary" style="background:rgba(255,255,255,0.2);color:#fff;border-color:rgba(255,255,255,0.5);backdrop-filter:blur(8px);">View Services</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">500+</div>
+            <div class="hero-stat-label">Happy Dogs</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">8+</div>
+            <div class="hero-stat-label">Years Experience</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">98%</div>
+            <div class="hero-stat-label">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       TRUST BAR
+  ================================================ -->
+  <div id="trust">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-item">
+          <div class="trust-icon">🎓</div>
+          <span>Certified Applied Animal Behaviorist</span>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">💙</div>
+          <span>Fear-Free Certified</span>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🏆</div>
+          <span>IAABC Accredited Member</span>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🐾</div>
+          <span>Force-Free Methods Only</span>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">📱</div>
+          <span>iPhone-Friendly Booking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================
+       ABOUT
+  ================================================ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap fade-in">
+          <div class="about-img-placeholder">
+            <span style="font-size:5rem;position:relative;z-index:1;">🐕</span>
+            <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin-top:12px;position:relative;z-index:1;font-family:'Nunito',sans-serif;">[Professional Photo Here]</p>
+          </div>
+          <div class="about-badge fade-in fade-in-delay-2">
+            <div class="about-badge-num">500+</div>
+            <div class="about-badge-txt">Dogs Helped</div>
+          </div>
+        </div>
+        <div class="about-text">
+          <div class="section-tag">About Me</div>
+          <h2>Hi, I'm Your Dog's New Best Ally 🐾</h2>
+          <p>
+            I'm a certified dog behaviorist with over 8 years of experience helping dogs and their families build deeper, more trusting relationships. I specialize in fear, anxiety, reactivity, and aggression — using evidence-based, force-free methods that respect both dog and human.
+          </p>
+          <p>
+            My approach isn't about commands and compliance — it's about truly understanding your dog's emotional world. When your dog feels safe and understood, everything else follows naturally.
+          </p>
+          <p>
+            I work from the heart of your home, either in-person or via telehealth, because that's where real behavior change happens.
+          </p>
+          <div class="about-creds">
+            <span class="cred-chip">🎓 CAAB Certified</span>
+            <span class="cred-chip">💙 Fear-Free Pro</span>
+            <span class="cred-chip">🐾 IAABC Member</span>
+            <span class="cred-chip">📚 B.Sc. Animal Behavior</span>
+            <span class="cred-chip">🌿 Force-Free Only</span>
+          </div>
+          <a href="#booking" class="btn btn-primary">Work With Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       SERVICES
+  ================================================ -->
+  <section id="services">
+    <div class="container" style="position:relative;z-index:3;">
+      <div class="services-header fade-in">
+        <div class="section-tag">What I Offer</div>
+        <h2>Behavior Support Tailored to Your Dog</h2>
+        <p>Every service is designed with your dog's emotional wellbeing at the center. No cookie-cutter plans — just thoughtful, personalized support.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-in fade-in-delay-1">
+          <div class="service-badge">Most Popular</div>
+          <div class="service-icon">🏠</div>
+          <h3>In-Home Behavior Assessment</h3>
+          <p>A comprehensive 2-hour visit in your home to observe your dog in their natural environment. I'll assess behavior, identify triggers, and create a personalized action plan.</p>
+          <div class="price">From $250</div>
+          <div class="price-note">Includes written behavior report</div>
+        </div>
+        <div class="service-card fade-in fade-in-delay-2">
+          <div class="service-icon">📱</div>
+          <h3>Telehealth Consultation</h3>
+          <p>Expert guidance from anywhere via video call. Ideal for follow-ups, mild behavior questions, or those outside my service area. Just as effective, more flexible.</p>
+          <div class="price">From $120</div>
+          <div class="price-note">60-minute session</div>
+        </div>
+        <div class="service-card fade-in fade-in-delay-3">
+          <div class="service-icon">🔄</div>
+          <h3>Behavior Modification Program</h3>
+          <p>A structured 6-week program for dogs with reactivity, fear, anxiety, or aggression. Weekly sessions plus ongoing text support to keep your progress on track.</p>
+          <div class="price">From $899</div>
+          <div class="price-note">6 sessions + support</div>
+        </div>
+        <div class="service-card fade-in fade-in-delay-1">
+          <div class="service-icon">🐕‍🦺</div>
+          <h3>Puppy Foundation Program</h3>
+          <p>Start on the right paw. 4-session program covering socialization, bite inhibition, crate training, and building a confident, emotionally resilient puppy.</p>
+          <div class="price">From $480</div>
+          <div class="price-note">4 sessions + resources</div>
+        </div>
+        <div class="service-card fade-in fade-in-delay-2">
+          <div class="service-icon">🎥</div>
+          <h3>Content Collaboration</h3>
+          <p>I create educational dog behavior content for social media. If you're open to being featured, our sessions may be filmed — always with your consent and at no cost to you.</p>
+          <div class="price">Complimentary</div>
+          <div class="price-note">Opt-in only, always your choice</div>
+        </div>
+        <div class="service-card fade-in fade-in-delay-3">
+          <div class="service-icon">🌙</div>
+          <h3>Emergency Behavior Consult</h3>
+          <p>For urgent situations — a bite incident, sudden aggression, or a dog in crisis. Priority scheduling within 48 hours and immediate guidance to keep everyone safe.</p>
+          <div class="price">From $300</div>
+          <div class="price-note">Priority booking available</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       PROCESS
+  ================================================ -->
+  <section id="process">
+    <div class="container">
+      <div class="process-header fade-in">
+        <div class="section-tag">How It Works</div>
+        <h2>Your Journey to a Calmer, Happier Dog</h2>
+      </div>
+      <div class="process-steps">
+        <div class="process-step fade-in fade-in-delay-1">
+          <div class="step-num">1</div>
+          <h4>Book Online</h4>
+          <p>Choose a date and service that works for you. Instant confirmation right to your inbox.</p>
+        </div>
+        <div class="process-step fade-in fade-in-delay-2">
+          <div class="step-num">2</div>
+          <h4>Complete Intake Form</h4>
+          <p>You'll receive a detailed intake form to share your dog's history, triggers, and goals before our session.</p>
+        </div>
+        <div class="process-step fade-in fade-in-delay-3">
+          <div class="step-num">3</div>
+          <h4>Our First Session</h4>
+          <p>We meet, I observe, I listen. Together we build a clear picture of what your dog needs.</p>
+        </div>
+        <div class="process-step fade-in fade-in-delay-4">
+          <div class="step-num">4</div>
+          <h4>Your Action Plan</h4>
+          <p>You receive a personalized written plan with exercises, resources, and ongoing support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       BOOKING
+  ================================================ -->
+  <section id="booking">
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="booking-inner">
+        <div class="booking-text fade-in">
+          <div class="section-tag light">Book a Session</div>
+          <h2>Ready to Change Your Dog's Life?</h2>
+          <p>
+            Let's take the first step together. Book your initial consultation below and I'll reach out within 24 hours to confirm your appointment.
+          </p>
+          <ul class="booking-features">
+            <li>Free 15-minute phone consultation for new clients</li>
+            <li>Flexible scheduling including evenings and weekends</li>
+            <li>Secure intake form sent automatically after booking</li>
+            <li>Available in-person or via telehealth</li>
+            <li>Gentle, force-free approach — always</li>
+          </ul>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num">24hr</div>
+              <div class="hero-stat-label">Response Time</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">100%</div>
+              <div class="hero-stat-label">Force-Free</div>
+            </div>
+          </div>
+        </div>
+        <div class="booking-card fade-in fade-in-delay-2">
+          <h3>Request Your Session 🐾</h3>
+          <p>Fill out the form below and I'll be in touch shortly.</p>
+          <form onsubmit="handleBooking(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name *</label>
+                <input type="text" placeholder="Jane Smith" required />
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" placeholder="(555) 000-0000" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" placeholder="jane@email.com" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Dog's Name</label>
+                <input type="text" placeholder="Buddy" />
+              </div>
+              <div class="form-group">
+                <label>Dog's Breed</label>
+                <input type="text" placeholder="Mixed breed" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Service Needed</label>
+              <select>
+                <option value="">Select a service...</option>
+                <option>In-Home Behavior Assessment</option>
+                <option>Telehealth Consultation</option>
+                <option>Behavior Modification Program</option>
+                <option>Puppy Foundation Program</option>
+                <option>Emergency Behavior Consult</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tell me a little about your situation</label>
+              <textarea placeholder="What's going on with your dog? What brings you to reach out today?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
+              Send My Request 🐾
+            </button>
+            <p style="text-align:center;margin-top:16px;font-size:0.8rem;color:#6B8FA3;">
+              🔒 Your information is 100% secure and never shared.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       INTAKE FORM
+  ================================================ -->
+  <section id="intake">
+    <div class="container">
+      <div class="intake-inner">
+        <div class="intake-text fade-in">
+          <div class="section-tag">Before We Meet</div>
+          <h2>Complete Your Dog's Intake Form</h2>
+          <p>
+            Our intake form helps me prepare a truly personalized session. You'll complete it once — and it makes our time together so much more effective.
+          </p>
+          <p>
+            The form is sent automatically after you book, but you can also access it directly here:
+          </p>
+          <div class="intake-fields">
+            <div class="intake-field"><span class="intake-field-icon">🐕</span> Dog profile: breed, age, history & behavior</div>
+            <div class="intake-field"><span class="intake-field-icon">🏠</span> Household & family information</div>
+            <div class="intake-field"><span class="intake-field-icon">⚡</span> Triggers, behavior issues & what you've tried</div>
+            <div class="intake-field"><span class="intake-field-icon">📝</span> Consent & liability waiver (digital signature)</div>
+            <div class="intake-field"><span class="intake-field-icon">🎥</span> Optional: filming consent for content</div>
+          </div>
+          <a href="https://thedogtherapist.com/intake" class="btn btn-primary">Open Intake Form →</a>
+          <p style="margin-top:16px;font-size:0.85rem;color:var(--text-light);">🔒 Secure, confidential, and GDPR-compliant.</p>
+        </div>
+        <div class="intake-cta-card fade-in fade-in-delay-2">
+          <h3>Already Booked?</h3>
+          <p>Check your email for your personalized intake form link — it was sent automatically right after you booked. Can't find it? No worries.</p>
+          <a href="#contact" class="btn" style="background:var(--warm-yellow);color:var(--text-dark);font-weight:800;">
+            Contact Me for Your Link
+          </a>
+          <div style="margin-top:32px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.2);">
+            <p style="font-size:0.88rem;opacity:0.8;margin-bottom:0;">
+              📱 Completing the form on your iPhone? It's fully mobile-optimized — takes about 8–10 minutes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       TESTIMONIALS
+  ================================================ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="test-header fade-in">
+        <div class="section-tag">Real Stories</div>
+        <h2>What Families Are Saying 🐾</h2>
+        <p>Real families, real transformations. These are the moments that remind me why I do what I do.</p>
+      </div>
+      <div class="test-grid">
+        <div class="test-card fade-in fade-in-delay-1">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-quote">"</div>
+          <p>After just two sessions, our rescue dog Mango stopped lunging at other dogs on walks. I cried happy tears on our first calm walk in two years. She gave us our dog — and our sanity — back.</p>
+          <div class="test-author">
+            <div class="test-avatar">🐕</div>
+            <div>
+              <div class="test-name">Sarah M.</div>
+              <div class="test-dog">Mango, 3-year-old rescue mix</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fade-in fade-in-delay-2">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-quote">"</div>
+          <p>I was this close to rehoming my dog. The aggression toward strangers had gotten scary. In 6 weeks, we went from "I can't do this" to having friends over at the house. Truly life-changing work.</p>
+          <div class="test-author">
+            <div class="test-avatar">🐾</div>
+            <div>
+              <div class="test-name">Marcus & Kim T.</div>
+              <div class="test-dog">Titan, 4-year-old German Shepherd</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fade-in fade-in-delay-3">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-quote">"</div>
+          <p>The online intake form was so thorough that she already understood our dog before we even met. Our first session felt like talking to a dear friend who also happened to know everything about dogs.</p>
+          <div class="test-author">
+            <div class="test-avatar">🌟</div>
+            <div>
+              <div class="test-name">Priya N.</div>
+              <div class="test-dog">Biscuit, 1-year-old Goldendoodle</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fade-in fade-in-delay-1">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-quote">"</div>
+          <p>Our puppy Luna was becoming fear-aggressive and we were panicked. The Puppy Foundation program gave us the tools and the confidence to shape her into the gentle, happy girl she is today.</p>
+          <div class="test-author">
+            <div class="test-avatar">🐶</div>
+            <div>
+              <div class="test-name">David & Anna R.</div>
+              <div class="test-dog">Luna, 8-month-old Labrador</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fade-in fade-in-delay-2">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-quote">"</div>
+          <p>The telehealth option was a game changer for us — we live 2 hours away but got the same quality of care. The follow-up written plan was incredibly detailed and easy to follow.</p>
+          <div class="test-author">
+            <div class="test-avatar">💙</div>
+            <div>
+              <div class="test-name">Jennifer L.</div>
+              <div class="test-dog">Cooper, 5-year-old Beagle mix</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fade-in fade-in-delay-3">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-quote">"</div>
+          <p>I appreciated that she never judged us. She made us feel like good dog owners who just needed the right support. That kindness made all the difference. We are forever grateful.</p>
+          <div class="test-author">
+            <div class="test-avatar">🌸</div>
+            <div>
+              <div class="test-name">Charlotte B.</div>
+              <div class="test-dog">Pepper, 6-year-old Shih Tzu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       CONTACT
+  ================================================ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <div class="section-tag">Get in Touch</div>
+          <h2>Let's Talk About Your Dog</h2>
+          <p>Have a question before booking? Want to see if we're the right fit? I'd love to hear from you. I personally read and respond to every message.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon">📧</div>
+              <div class="contact-item-text">
+                <strong>Email</strong>
+                <span>hello@thedogtherapist.com</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📱</div>
+              <div class="contact-item-text">
+                <strong>Phone / Text</strong>
+                <span>(555) 000-0000 — text preferred!</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📍</div>
+              <div class="contact-item-text">
+                <strong>Service Area</strong>
+                <span>In-home visits within 30 miles · Telehealth nationwide</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">🕐</div>
+              <div class="contact-item-text">
+                <strong>Response Time</strong>
+                <span>I reply within 24 hours, usually much sooner</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📸</div>
+              <div class="contact-item-text">
+                <strong>Instagram</strong>
+                <span>@thedogtherapist — daily behavior tips & client transformations</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form fade-in fade-in-delay-2">
+          <h3>Send Me a Message 🐾</h3>
+          <p>I'll get back to you within 24 hours.</p>
+          <form onsubmit="handleContact(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="Your email" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <select>
+                <option>General Inquiry</option>
+                <option>Pricing Question</option>
+                <option>Emergency Situation</option>
+                <option>Partnership / Collaboration</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Your Message</label>
+              <textarea placeholder="Tell me about your dog and what you need help with..." style="min-height:140px;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
+              Send Message 🐾
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       POLICIES
+  ================================================ -->
+  <section id="policies">
+    <div class="container">
+      <div class="policies-header fade-in">
+        <div class="section-tag">Policies & Agreements</div>
+        <h2>Transparency You Can Trust</h2>
+        <p style="color:var(--text-mid);max-width:560px;margin:0 auto;font-size:1.05rem;line-height:1.7;">
+          I believe in being clear and upfront about how we work together. Please take a moment to read our policies before your first session.
+        </p>
+      </div>
+      <div class="policies-grid">
+        <div class="policy-card fade-in fade-in-delay-1">
+          <h3>📋 Liability Waiver</h3>
+          <p>By booking a session with The Dog Therapist, you acknowledge and agree to the following:</p>
+          <ul style="margin-top:12px;">
+            <li>Dog behavior is unpredictable. I will take every reasonable precaution, but cannot guarantee specific outcomes.</li>
+            <li>You are responsible for the safety and behavior of your dog at all times during and after our sessions.</li>
+            <li>The Dog Therapist is not liable for any injury to persons or property caused by your dog.</li>
+            <li>Recommendations provided are educational in nature and do not replace veterinary medical advice.</li>
+            <li>A digital signature on your intake form constitutes your agreement to this waiver.</li>
+          </ul>
+        </div>
+        <div class="policy-card fade-in fade-in-delay-2">
+          <h3>🎥 Filming & Content Policy</h3>
+          <p>I create educational content about dog behavior for social media and online platforms. Here's what you need to know:</p>
+          <ul style="margin-top:12px;">
+            <li>Filming during sessions is <strong>entirely optional</strong> and requires your explicit written consent.</li>
+            <li>You may opt out of filming at any time — on the intake form, or verbally before your session.</li>
+            <li>If you consent, footage may be edited and shared on Instagram, YouTube, or TikTok for educational purposes.</li>
+            <li>You will never be identified by full name without additional written consent.</li>
+            <li>You may request footage removal at any time by contacting hello@thedogtherapist.com.</li>
+          </ul>
+        </div>
+        <div class="policy-card fade-in fade-in-delay-3">
+          <h3>💰 Cancellation & Refund Policy</h3>
+          <ul style="margin-top:12px;">
+            <li><strong>48+ hours notice:</strong> Full refund or free reschedule.</li>
+            <li><strong>24–48 hours notice:</strong> 50% credit toward a future session.</li>
+            <li><strong>Less than 24 hours:</strong> Session fee is forfeited, except in documented emergencies.</li>
+            <li><strong>Packages:</strong> Pro-rated refunds available within the first 14 days.</li>
+            <li>All cancellations must be made via email or text message.</li>
+          </ul>
+        </div>
+        <div class="policy-card fade-in fade-in-delay-4">
+          <h3>🔒 Privacy & Data Policy</h3>
+          <p>Your privacy matters deeply to me.</p>
+          <ul style="margin-top:12px;">
+            <li>All personal information collected via intake forms is stored securely in encrypted cloud storage.</li>
+            <li>Your data is never sold, rented, or shared with third parties without your consent.</li>
+            <li>Intake forms and session notes are retained for 3 years for professional records purposes.</li>
+            <li>You may request deletion of your data at any time.</li>
+            <li>This website uses cookies for analytics only. No personal data is collected via cookies.</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:48px;" class="fade-in">
+        <p style="color:var(--text-mid);margin-bottom:20px;">By booking a session, you acknowledge having read and agreed to these policies. A copy of all agreements is included in your intake form for your records.</p>
+        <a href="#booking" class="btn btn-primary">I Understand — Book My Session</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       FOOTER
+  ================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:28px;">🐾</span>
+            <div class="footer-logo-text">The Dog Therapist</div>
+          </div>
+          <p>Compassionate, science-based dog behavior consulting. Helping dogs and their families build happier, more balanced lives — one paw at a time.</p>
+          <div style="display:flex;gap:16px;margin-top:24px;">
+            <a href="#" style="width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none;">📸</a>
+            <a href="#" style="width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none;">▶️</a>
+            <a href="#" style="width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;text-decoration:none;">🎵</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#booking">Book a Session</a></li>
+            <li><a href="#intake">Intake Form</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">In-Home Assessment</a></li>
+            <li><a href="#services">Telehealth</a></li>
+            <li><a href="#services">Behavior Modification</a></li>
+            <li><a href="#services">Puppy Foundation</a></li>
+            <li><a href="#services">Emergency Consult</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#policies">Liability Waiver</a></li>
+            <li><a href="#policies">Filming Policy</a></li>
+            <li><a href="#policies">Cancellation Policy</a></li>
+            <li><a href="#policies">Privacy Policy</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2025 The Dog Therapist · thedogtherapist.com · All Rights Reserved</div>
+        <div class="footer-paws">🐾🐾🐾</div>
+        <div>Made with 💙 for dogs everywhere</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================
+       FLOATING CTA
+  ================================================ -->
+  <div class="floating-cta">
+    <a href="#booking" class="floating-btn">Book Now 🐾</a>
+  </div>
+
+  <!-- ================================================
+       SUCCESS MESSAGES
+  ================================================ -->
+  <div id="successModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:24px;padding:48px;max-width:460px;text-align:center;margin:24px;">
+      <div style="font-size:4rem;margin-bottom:16px;">🐾</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:12px;">Message Sent!</h3>
+      <p style="color:#6B8FA3;line-height:1.7;margin-bottom:28px;">Thank you! I'll be in touch within 24 hours. Check your inbox for a confirmation email.</p>
+      <button onclick="document.getElementById('successModal').style.display='none'" class="btn btn-primary" style="width:100%;justify-content:center;">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- ================================================
+       JAVASCRIPT
+  ================================================ -->
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    // Scroll animations
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Form handlers
+    function handleBooking(e) {
+      e.preventDefault();
+      document.getElementById('successModal').style.display = 'flex';
+      e.target.reset();
+    }
+    function handleContact(e) {
+      e.preventDefault();
+      document.getElementById('successModal').style.display = 'flex';
+      e.target.reset();
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
