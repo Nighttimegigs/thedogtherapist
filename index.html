@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Dog Therapist | Certified Dog Behaviorist</title>
   <meta name="description" content="Professional dog behavior consulting and training. We help dogs and their families live happier, more balanced lives." />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action https://formspree.io;" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
   <style>
@@ -1315,34 +1317,34 @@
         <div class="booking-card fade-in fade-in-delay-2">
           <h3>Request Your Session 🐾</h3>
           <p>Fill out the form below and I'll be in touch shortly.</p>
-          <form onsubmit="handleBooking(event)">
+          <form onsubmit="handleBooking(event)" id="booking-form">
             <div class="form-row">
               <div class="form-group">
                 <label>Your Name *</label>
-                <input type="text" placeholder="Jane Smith" required />
+                <input type="text" name="name" placeholder="Jane Smith" required autocomplete="name" />
               </div>
               <div class="form-group">
                 <label>Phone Number *</label>
-                <input type="tel" placeholder="(555) 000-0000" required />
+                <input type="tel" name="phone" placeholder="(555) 000-0000" required autocomplete="tel" />
               </div>
             </div>
             <div class="form-group">
               <label>Email Address *</label>
-              <input type="email" placeholder="jane@email.com" required />
+              <input type="email" name="email" placeholder="jane@email.com" required autocomplete="email" />
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label>Dog's Name</label>
-                <input type="text" placeholder="Buddy" />
+                <input type="text" name="dog_name" placeholder="Buddy" />
               </div>
               <div class="form-group">
                 <label>Dog's Breed</label>
-                <input type="text" placeholder="Mixed breed" />
+                <input type="text" name="dog_breed" placeholder="Mixed breed" />
               </div>
             </div>
             <div class="form-group">
               <label>Service Needed</label>
-              <select>
+              <select name="service">
                 <option value="">Select a service...</option>
                 <option>In-Home Behavior Assessment</option>
                 <option>Telehealth Consultation</option>
@@ -1353,9 +1355,9 @@
             </div>
             <div class="form-group">
               <label>Tell me a little about your situation</label>
-              <textarea placeholder="What's going on with your dog? What brings you to reach out today?"></textarea>
+              <textarea name="message" placeholder="What's going on with your dog? What brings you to reach out today?"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
+            <button type="submit" id="booking-btn" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
               Send My Request 🐾
             </button>
             <p style="text-align:center;margin-top:16px;font-size:0.8rem;color:#6B8FA3;">
@@ -1389,7 +1391,7 @@
             <div class="intake-field"><span class="intake-field-icon">📝</span> Consent & liability waiver (digital signature)</div>
             <div class="intake-field"><span class="intake-field-icon">🎥</span> Optional: filming consent for content</div>
           </div>
-          <a href="https://thedogtherapist.net/intake" class="btn btn-primary">Open Intake Form →</a>
+          <a href="https://thedogtherapist.net/intake" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open Intake Form →</a>
           <p style="margin-top:16px;font-size:0.85rem;color:var(--text-light);">🔒 Secure, confidential, and GDPR-compliant.</p>
         </div>
         <div class="intake-cta-card fade-in fade-in-delay-2">
@@ -1546,20 +1548,20 @@
         <div class="contact-form fade-in fade-in-delay-2">
           <h3>Send Me a Message 🐾</h3>
           <p>I'll get back to you within 24 hours.</p>
-          <form onsubmit="handleContact(event)">
+          <form onsubmit="handleContact(event)" id="contact-form">
             <div class="form-row">
               <div class="form-group">
                 <label>Your Name</label>
-                <input type="text" placeholder="Your name" required />
+                <input type="text" name="name" placeholder="Your name" required autocomplete="name" />
               </div>
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="Your email" required />
+                <input type="email" name="email" placeholder="Your email" required autocomplete="email" />
               </div>
             </div>
             <div class="form-group">
               <label>Subject</label>
-              <select>
+              <select name="subject">
                 <option>General Inquiry</option>
                 <option>Pricing Question</option>
                 <option>Emergency Situation</option>
@@ -1569,9 +1571,9 @@
             </div>
             <div class="form-group">
               <label>Your Message</label>
-              <textarea placeholder="Tell me about your dog and what you need help with..." style="min-height:140px;"></textarea>
+              <textarea name="message" placeholder="Tell me about your dog and what you need help with..." style="min-height:140px;"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
+            <button type="submit" id="contact-btn" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
               Send Message 🐾
             </button>
           </form>
@@ -1750,15 +1752,44 @@
     fadeEls.forEach(el => observer.observe(el));
 
     // Form handlers
+    // ── Formspree endpoint IDs ──────────────────────────────────────────
+    // Sign up free at https://formspree.io, create two forms, paste IDs below.
+    const BOOKING_FORM_ID  = 'YOUR_BOOKING_FORM_ID';   // e.g. 'xpwzabcd'
+    const CONTACT_FORM_ID  = 'YOUR_CONTACT_FORM_ID';   // e.g. 'xrgqefgh'
+    // ───────────────────────────────────────────────────────────────────
+
+    async function submitToFormspree(formId, form, btn) {
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://formspree.io/f/' + formId, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        if (res.ok) {
+          document.getElementById('successModal').style.display = 'flex';
+          form.reset();
+        } else {
+          const data = await res.json();
+          alert(data.errors ? data.errors.map(e => e.message).join(', ') : 'Submission failed. Please try again.');
+        }
+      } catch {
+        alert('Network error — please check your connection and try again.');
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    }
+
     function handleBooking(e) {
       e.preventDefault();
-      document.getElementById('successModal').style.display = 'flex';
-      e.target.reset();
+      submitToFormspree(BOOKING_FORM_ID, e.target, document.getElementById('booking-btn'));
     }
     function handleContact(e) {
       e.preventDefault();
-      document.getElementById('successModal').style.display = 'flex';
-      e.target.reset();
+      submitToFormspree(CONTACT_FORM_ID, e.target, document.getElementById('contact-btn'));
     }
 
     // Smooth scroll for anchor links
