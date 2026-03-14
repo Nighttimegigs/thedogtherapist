@@ -6,7 +6,7 @@
   <title>The Dog Therapist | Certified Dog Behaviorist</title>
   <meta name="description" content="Professional dog behavior consulting and training. We help dogs and their families live happier, more balanced lives." />
   <meta name="robots" content="index, follow" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action https://formspree.io;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.jotform.com; font-src https://fonts.gstatic.com https://*.jotform.com; img-src 'self' data: https://*.jotform.com https://*.jotcdn.com; script-src 'self' 'unsafe-inline' https://*.jotform.com https://*.jotcdn.com; frame-src https://form.jotform.com; connect-src 'self' https://*.jotform.com https://submit.jotform.com;" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
   <style>
@@ -1314,56 +1314,23 @@
             </div>
           </div>
         </div>
-        <div class="booking-card fade-in fade-in-delay-2">
+        <div class="booking-card fade-in fade-in-delay-2" style="padding:32px 24px;">
           <h3>Request Your Session 🐾</h3>
-          <p>Fill out the form below and I'll be in touch shortly.</p>
-          <form onsubmit="handleBooking(event)" id="booking-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label>Your Name *</label>
-                <input type="text" name="name" placeholder="Jane Smith" required autocomplete="name" />
-              </div>
-              <div class="form-group">
-                <label>Phone Number *</label>
-                <input type="tel" name="phone" placeholder="(555) 000-0000" required autocomplete="tel" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Email Address *</label>
-              <input type="email" name="email" placeholder="jane@email.com" required autocomplete="email" />
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Dog's Name</label>
-                <input type="text" name="dog_name" placeholder="Buddy" />
-              </div>
-              <div class="form-group">
-                <label>Dog's Breed</label>
-                <input type="text" name="dog_breed" placeholder="Mixed breed" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Service Needed</label>
-              <select name="service">
-                <option value="">Select a service...</option>
-                <option>In-Home Behavior Assessment</option>
-                <option>Telehealth Consultation</option>
-                <option>Behavior Modification Program</option>
-                <option>Puppy Foundation Program</option>
-                <option>Emergency Behavior Consult</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Tell me a little about your situation</label>
-              <textarea name="message" placeholder="What's going on with your dog? What brings you to reach out today?"></textarea>
-            </div>
-            <button type="submit" id="booking-btn" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
-              Send My Request 🐾
-            </button>
-            <p style="text-align:center;margin-top:16px;font-size:0.8rem;color:#6B8FA3;">
-              🔒 Your information is 100% secure and never shared.
-            </p>
-          </form>
+          <p style="margin-bottom:20px;">Fill out the form below and I'll be in touch shortly.</p>
+          <iframe
+            id="JotFormIFrame-230076068113145"
+            title="Session Request Form"
+            src="https://form.jotform.com/230076068113145"
+            frameborder="0"
+            style="width:100%;min-height:600px;border:none;border-radius:12px;"
+            scrolling="no"
+            allow="geolocation; microphone; camera"
+          ></iframe>
+          <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
+          <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-230076068113145']", "https://form.jotform.com/")</script>
+          <p style="text-align:center;margin-top:16px;font-size:0.8rem;color:#6B8FA3;">
+            🔒 Your information is 100% secure and never shared.
+          </p>
         </div>
       </div>
     </div>
@@ -1391,7 +1358,7 @@
             <div class="intake-field"><span class="intake-field-icon">📝</span> Consent & liability waiver (digital signature)</div>
             <div class="intake-field"><span class="intake-field-icon">🎥</span> Optional: filming consent for content</div>
           </div>
-          <a href="https://thedogtherapist.net/intake" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open Intake Form →</a>
+          <a href="https://form.jotform.com/232836383518160" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open Intake Form →</a>
           <p style="margin-top:16px;font-size:0.85rem;color:var(--text-light);">🔒 Secure, confidential, and GDPR-compliant.</p>
         </div>
         <div class="intake-cta-card fade-in fade-in-delay-2">
@@ -1750,47 +1717,6 @@
       });
     }, { threshold: 0.1 });
     fadeEls.forEach(el => observer.observe(el));
-
-    // Form handlers
-    // ── Formspree endpoint IDs ──────────────────────────────────────────
-    // Sign up free at https://formspree.io, create two forms, paste IDs below.
-    const BOOKING_FORM_ID  = 'YOUR_BOOKING_FORM_ID';   // e.g. 'xpwzabcd'
-    const CONTACT_FORM_ID  = 'YOUR_CONTACT_FORM_ID';   // e.g. 'xrgqefgh'
-    // ───────────────────────────────────────────────────────────────────
-
-    async function submitToFormspree(formId, form, btn) {
-      const originalText = btn.textContent;
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
-      try {
-        const res = await fetch('https://formspree.io/f/' + formId, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
-        });
-        if (res.ok) {
-          document.getElementById('successModal').style.display = 'flex';
-          form.reset();
-        } else {
-          const data = await res.json();
-          alert(data.errors ? data.errors.map(e => e.message).join(', ') : 'Submission failed. Please try again.');
-        }
-      } catch {
-        alert('Network error — please check your connection and try again.');
-      } finally {
-        btn.textContent = originalText;
-        btn.disabled = false;
-      }
-    }
-
-    function handleBooking(e) {
-      e.preventDefault();
-      submitToFormspree(BOOKING_FORM_ID, e.target, document.getElementById('booking-btn'));
-    }
-    function handleContact(e) {
-      e.preventDefault();
-      submitToFormspree(CONTACT_FORM_ID, e.target, document.getElementById('contact-btn'));
-    }
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
